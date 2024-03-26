@@ -3,9 +3,10 @@ output "aws_vpc_id" {
 }
 
 output "aws_subnets_private" {
-  value = aws_subnet.az1_private.cidr_block
+  value = aws_subnet.azp_private.cidr_block
 }
 
 output "aws_subnets_public" {
-  value = aws_subnet.az1_public.cidr_block
+  value = aws_subnet.azp_public.cidr_block
 }
+

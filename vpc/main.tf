@@ -7,39 +7,43 @@ resource "aws_vpc" "main" {
   }
 }
 
-resource "aws_subnet" "az2_public" {
+resource "aws_subnet" "azs_public" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = var.subnet_az2_public
+  cidr_block = var.subnet_azs_public
+  availability_zone = var.az_secondary
 
   tags = {
-    Name = "routable"
+    Name = "routable-secondary"
   }
 }
 
-resource "aws_subnet" "az2_private" {
+resource "aws_subnet" "azs_private" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = var.subnet_az2_private
+  cidr_block = var.subnet_azs_private
+  availability_zone = var.az_secondary
 
   tags = {
-    Name = "non-routable"
+    Name = "non-routable-secondary"
   }
 }
 
-resource "aws_subnet" "az1_public" {
+resource "aws_subnet" "azp_public" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = var.subnet_az1_public
+  cidr_block = var.subnet_azp_public
+  availability_zone = var.az_primary
 
   tags = {
-    Name = "routable"
+    Name = "routable-primary"
   }
 }
 
-resource "aws_subnet" "az1_private" {
+resource "aws_subnet" "azp_private" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = var.subnet_az1_private
+  cidr_block = var.subnet_azp_private
+  availability_zone = var.az_primary
 
   tags = {
-    Name = "non-routable"
+    Name = "non-routable-primary"
   }
 }
 

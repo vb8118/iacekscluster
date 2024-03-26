@@ -12,11 +12,13 @@
 module "vpc" {
   source = "./vpc"
 
+  az_secondary = var.az_secondary
+  az_primary = var.az_primary
   vpc_cidr_block     = var.vpc_cidr_block
-  subnet_az2_public  = var.subnet_az2_public
-  subnet_az2_private = var.subnet_az2_private
-  subnet_az1_public  = var.subnet_az1_public
-  subnet_az1_private = var.subnet_az1_private
+  subnet_azs_public  = var.subnet_azs_public
+  subnet_azs_private = var.subnet_azs_private
+  subnet_azp_public  = var.subnet_azp_public
+  subnet_azp_private = var.subnet_azp_private
 
 }
 

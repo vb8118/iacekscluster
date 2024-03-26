@@ -3,22 +3,33 @@ variable "vpc_cidr_block" {
   description = "VPC CIDR block"
 }
 
-variable "subnet_az2_public" {
+
+variable "az_primary" {
   type = string
-  description = "Availability zone 2 public subnet"
+  description = "Primary Availability Zone"
 }
 
-variable "subnet_az2_private" {
+variable "az_secondary" {
   type = string
-  description = "Availability zone 2 private subnet"
+  description = "Secodnary Availability zone"
 }
 
-variable "subnet_az1_public" {
+variable "subnet_azs_public" {
   type = string
-  description = "Availability zone 2 public subnet"
+  description = "Availability zone secondary public subnet"
 }
 
-variable "subnet_az1_private" {
+variable "subnet_azs_private" {
   type = string
-  description = "Availability zone 2 private subnet"
+  description = "Availability zone secondary private subnet"
+}
+
+variable "subnet_azp_public" {
+  type = string
+  description = "Availability zone primary public subnet"
+}
+
+variable "subnet_azp_private" {
+  type = string
+  description = "Availability zone primary private subnet"
 }
