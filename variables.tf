@@ -10,13 +10,13 @@ variable "vpc_cidr_block" {
 variable "az_primary" {
   description = "A list of availability zones names in the region"
   type        = string
-  default     = "eu-west-2a"
+  default     = "us-east-1a"
 }
 
 variable "az_secondary" {
   description = "A list of availability zones names in the region"
   type        = string
-  default     = "eu-west-2b"
+  default     = "us-east-1b"
 }
 
 variable "subnet_azp_public" {
