@@ -8,3 +8,15 @@
 #     Name = "EC2-app-tfm",
 #   }
 # }
+
+module "vpc" {
+  source = "./vpc"
+
+  vpc_cidr_block     = var.vpc_cidr_block
+  subnet_az2_public  = var.subnet_az2_public
+  subnet_az2_private = var.subnet_az2_private
+  subnet_az1_public  = var.subnet_az1_public
+  subnet_az1_private = var.subnet_az1_private
+
+}
+
