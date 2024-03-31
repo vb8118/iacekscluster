@@ -11,8 +11,8 @@ resource "aws_eks_cluster" "eks" {
   # the Kubernetes control plane to make calls to AWS API operations on your behalf
   role_arn = aws_iam_role.eks_cluster.arn
 
-#   # Desired Kubernetes master version
-#   version = "1.18"
+   # Desired Kubernetes master version
+   version = "1.28"
 
   vpc_config {
     # Indicates whether or not the Amazon EKS private API server endpoint is enabled
