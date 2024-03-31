@@ -4,7 +4,7 @@
 
 resource "aws_iam_role" "eks_developer" {
   # The name of the role
-  name = var.clusterName
+  name = "eks-developer"
 
   # The policy that grants an entity permission to assume the role.
   # Used to access AWS resources that you might not normally have access to.
@@ -39,7 +39,7 @@ resource "aws_iam_role_policy_attachment" "amazon_eks_developer_policy" {
 
 resource "aws_iam_role" "eks_admin" {
   # The name of the role
-  name = var.clusterName
+  name = "eks-admin"
 
   # The policy that grants an entity permission to assume the role.
   # Used to access AWS resources that you might not normally have access to.
@@ -70,4 +70,28 @@ resource "aws_iam_role_policy_attachment" "amazon_eks_admin_policy" {
 
   # The role the policy should be applied to
   role = aws_iam_role.eks_admin.name
+}
+
+#create access key ID and secret key 
+resource "aws_iam_access_key" "varun_access_key" {
+  user = aws_iam_user.developer.name
+}
+
+output "access_key_id" {
+  value = aws_iam_access_key.varun_access_key.id
+  sensitive = true
+}
+
+output "secret_access_key" {
+  value = aws_iam_access_key.varun_access_key.secret
+  sensitive = true
+}
+
+locals {
+  varun_keys_csv = "access_key,secret_key\n${aws_iam_access_key.varun_access_key.id},${aws_iam_access_key.varun_access_key.secret}"
+}
+
+resource "local_file" "varun_keys" {
+  content  = local.varun_keys_csv
+  filename = "varun-keys.csv"
 }

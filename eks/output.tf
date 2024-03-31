@@ -27,3 +27,8 @@ output "aws_subnet_azs_private_id"{
 output "aws_subnet_azs_public_id"{
   value = aws_subnet.azs_public.id
 }
+
+
+output "user_arn" {
+ value = aws_iam_user.developer.arn
+}
