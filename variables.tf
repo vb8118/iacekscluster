@@ -2,6 +2,12 @@ variable "iaceksregion" {
   default = "us-east-1"
 }
 
+variable "clusterName" {
+  description = "Cluster Name"
+  type        = string
+  default     = "eks-demo-cluster"
+}
+
 variable "vpc_cidr_block" {
   default = "10.55.55.0/24"
 }

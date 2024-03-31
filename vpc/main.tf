@@ -12,8 +12,13 @@ resource "aws_subnet" "azs_public" {
   cidr_block = var.subnet_azs_public
   availability_zone = var.az_secondary
 
+  # Required for EKS. Instances launched into the subnet should be assigned a public IP address.
+  map_public_ip_on_launch = true
+
   tags = {
     Name = "routable-secondary"
+    "kubernetes.io/cluster/eks" = "shared"
+    "kubernetes.io/role/elb"    = 1
   }
 }
 
@@ -24,6 +29,8 @@ resource "aws_subnet" "azs_private" {
 
   tags = {
     Name = "non-routable-secondary"
+    "kubernetes.io/cluster/eks"       = "shared"
+    "kubernetes.io/role/internal-elb" = 1
   }
 }
 
@@ -31,9 +38,13 @@ resource "aws_subnet" "azp_public" {
   vpc_id     = aws_vpc.main.id
   cidr_block = var.subnet_azp_public
   availability_zone = var.az_primary
+  # Required for EKS. Instances launched into the subnet should be assigned a public IP address.
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "routable-primary"
+    "kubernetes.io/cluster/eks" = "shared"
+    "kubernetes.io/role/elb"    = 1
   }
 }
 
@@ -44,6 +55,8 @@ resource "aws_subnet" "azp_private" {
 
   tags = {
     Name = "non-routable-primary"
+    "kubernetes.io/cluster/eks"       = "shared"
+    "kubernetes.io/role/internal-elb" = 1
   }
 }
 
