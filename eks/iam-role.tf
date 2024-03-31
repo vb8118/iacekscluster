@@ -1,3 +1,4 @@
+
 # Resource: aws_iam_role
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role
 
@@ -40,6 +41,7 @@ resource "aws_iam_role_policy_attachment" "amazon_eks_cluster_policy" {
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_cluster
 
 resource "aws_eks_cluster" "eks" {
+
   # Name of the cluster.
   name = var.clusterName
 
@@ -59,10 +61,10 @@ resource "aws_eks_cluster" "eks" {
 
     # Must be in at least two different availability zones
     subnet_ids = [
-      aws_subnet.azs_public.id,
-      aws_subnet.azp.public.id,
-      aws_subnet.azs.private.id,
-      aws_subnet.azp.private.id
+      aws_subnet.azp_private.id,
+      aws_subnet.azs_private.id,
+      aws_subnet.azp_public.id,
+      aws_subnet.azs_private.id
     ]
   }
 

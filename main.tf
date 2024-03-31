@@ -9,9 +9,10 @@
 #   }
 # }
 
-module "vpc" {
-  source = "./vpc"
+module "eks" {
+  source = "./eks"
 
+  clusterName        = var.clusterName
   az_secondary       = var.az_secondary
   az_primary         = var.az_primary
   vpc_cidr_block     = var.vpc_cidr_block
@@ -20,17 +21,4 @@ module "vpc" {
   subnet_azp_public  = var.subnet_azp_public
   subnet_azp_private = var.subnet_azp_private
 
-}
-
-module "iam" {
-  source      = "./iam"
-  clusterName = var.clusterName
-
-  az_secondary       = var.az_secondary
-  az_primary         = var.az_primary
-  vpc_cidr_block     = var.vpc_cidr_block
-  subnet_azs_public  = var.subnet_azs_public
-  subnet_azs_private = var.subnet_azs_private
-  subnet_azp_public  = var.subnet_azp_public
-  subnet_azp_private = var.subnet_azp_private
 }
